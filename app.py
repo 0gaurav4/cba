@@ -8,7 +8,6 @@ load_model = load('static\model.pk')
 app = Flask(__name__)
 app.secret_key = 'supersecretmre'
 
-
 @app.route('/')
 def index():
     flash('Welcome to the Flask App', 'info')
@@ -34,19 +33,19 @@ def analysis():
         pred=load_model.predict(inp)[0]
         #print(pred)
         if pred==0:
-            output=f'Customers belongs the group {pred} : [with low income & low expenditure]'
+            output=f'Customer belongs the group {pred} : [with low income & low expenditure]'
             output1=f"Number of customers in group {pred} are : {df[df.group == 0].shape[0]}"
         elif pred==1:
-            output=f'Customers belongs the group {pred} : [with high income & high expenditure]'
+            output=f'Customer belongs the group {pred} : [with high income & high expenditure]'
             output1=f"Number of customers in group {pred} are : {df[df.group == 1].shape[0]}"
         elif pred==2:
-            output=f'Customers belongs the group {pred} : [with medium income & medium expenditure]'
+            output=f'Customer belongs the group {pred} : [with medium income & medium expenditure]'
             output1=f"Number of customers in group {pred} are : {df[df.group == 2].shape[0]}"
         elif pred==3:
-            output=f'Customers belongs the group {pred} : [with high income & low expenditure]'
+            output=f'Customer belongs the group {pred} : [with high income & low expenditure]'
             output1=f"Number of customers in group {pred} are : {df[df.group == 3].shape[0]}"
         elif pred==4:
-            output=f'Customers belongs the group {pred} : [with low income & medium expenditure]'
+            output=f'Customer belongs the group {pred} : [with low income & medium expenditure]'
             output1=f"Number of customers in group {pred} are : {df[df.group == 4].shape[0]}"
         return render_template('analysis.html',output=output, output1=output1)
     return render_template('analysis.html')
